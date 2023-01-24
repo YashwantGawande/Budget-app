@@ -1,22 +1,23 @@
 import { useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { Button, Stack } from 'react-bootstrap'
-import './App.css'
 import AddBudgetModal from './components/AddBudgetModal'
 import AddExpensesModal from './components/AddExpensesModal'
+import UnCategorizedBudgetCard from './components/unCategorizedBudgetCard'
 import BudgetCard from './components/BudgetCard'
 import { BudgetsProvider, useBudgets } from './contexts/BudgetsContext'
+import TotalBudgetCard from './components/TotalBudgetCard'
 
 function App() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
   const [showAddExpensesModal, setShowAddExpensesModal] = useState(false)
-  const [addExpensesModalBudgetId, setAddExpensesModalBudgetId] = useState
+  const [addExpensesModalBudgetId, setAddExpensesModalBudgetId] = useState()
   const { budgets, getBudgetExpenses } = useBudgets()
 
-function openAddExpensesModal(budgetId){
- setShowAddExpensesModal(true)
- setAddExpensesModalBudgetId(budgetId)
-}
+  function openAddExpensesModal(budgetId) {
+    setShowAddExpensesModal(true)
+    setAddExpensesModalBudgetId(budgetId)
+  }
 
   return (
     <>
@@ -48,17 +49,18 @@ function openAddExpensesModal(budgetId){
                 name="budget.name"
                 amount={amount}
                 max={budget.max}
-                onAddExpensesClick={()=> openAddExpensesModal(budget.id)}
+                onAddExpensesClick={() => openAddExpensesModal(budget.id)}
               />
             )
           })}
-
+          <UnCategorizedBudgetCard onAddExpensesClick={openAddExpensesModal} />
+          <TotalBudgetCard />
         </div>
       </Container>
       <AddBudgetModal show={showAddBudgetModal} handleClose={() => setShowAddBudgetModal(false)} />
       <AddExpensesModal show={showAddExpensesModal}
-      defaultBudgetId={addExpensesModalBudgetId}
-      handleClose={() => setShowAddExpensesModal(false)} />
+        defaultBudgetId={addExpensesModalBudgetId}
+        handleClose={() => setShowAddExpensesModal(false)} />
     </>
   )
 }
