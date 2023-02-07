@@ -46,7 +46,7 @@ export default function BudgetCard({
             <Button
               variant="outline-primary"
               className="ms-auto"
-              onClick={openAddExpensesClick}
+              onClick={onAddExpensesClick}
             >
               Add Expenses
             </Button>

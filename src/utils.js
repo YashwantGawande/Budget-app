@@ -1,5 +1,5 @@
 export const currencyFormatter = new Intl.NumberFormat(undefined,{
-    currency: "rupee",
+    currency: "USD",
     style: "currency",
     minimumFractionDigits: 0
 })
