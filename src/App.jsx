@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { Button, Stack } from "react-bootstrap";
 import AddBudgetModal from "./components/AddBudgetModal";
 import AddExpensesModal from "./components/AddExpensesModal";
-import UnCategorizedBudgetCard from "./components/UnCategorizedBudgetCard";
+import UnCategorizedBudgetCard from "./components/unCategorizedBudgetCard";
 import BudgetCard from "./components/BudgetCard";
 import { unCATEGORIZED_BUDGET_ID, useBudgets } from "./contexts/BudgetsContext";
 import TotalBudgetCard from "./components/TotalBudgetCard";
