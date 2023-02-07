@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   unCATEGORIZED_BUDGET_ID,
   useBudgets,
@@ -9,7 +7,7 @@ import BudgetCard from "./BudgetCard";
 export default function UnCategorizedBudgetCard(props) {
   const { getBudgetExpenses } = useBudgets();
   const amount = getBudgetExpenses(unCATEGORIZED_BUDGET_ID).reduce(
-    (total, expenses) => total + expenses.amount,
+    (total, expense) => total + expense.amount,
     0
   );
   if (amount === 0) return null;

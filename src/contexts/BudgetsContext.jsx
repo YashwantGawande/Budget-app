@@ -18,7 +18,7 @@ export const BudgetsProvider = ({ children }) => {
     return expenses.filter((expense) => expense.budgetId === budgetId);
   }
 
-  function addExpenses({ description, amount, budgetId }) {
+  function addExpense({ description, amount, budgetId }) {
     setExpenses((prevExpenses) => {
       return [...prevExpenses, { id: uuidV4(), description, amount, budgetId }];
     });
@@ -45,7 +45,7 @@ export const BudgetsProvider = ({ children }) => {
     });
   }
 
-  function deleteExpenses({ id }) {
+  function deleteExpense({ id }) {
     setExpenses((prevExpenses) => {
       return prevExpenses.filter((expenses) => expenses.id !== id);
     });
@@ -57,10 +57,10 @@ export const BudgetsProvider = ({ children }) => {
         budgets,
         expenses,
         getBudgetExpenses,
-        addExpenses,
+        addExpense,
         addBudget,
         deleteBudget,
-        deleteExpenses,
+        deleteExpense,
       }}
     >
       {children}

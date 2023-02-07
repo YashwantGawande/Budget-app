@@ -6,14 +6,14 @@ import {
 import { currencyFormatter } from "../utils";
 
 export default function ViewExpensesModal(budgetId, handleClose) {
-  const { getBudgetExpenses, budgets, deleteBudget, deleteExpenses } =
+  const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } =
     useBudgets();
 
   const expenses = getBudgetExpenses(budgetId);
 
   const budget =
     unCATEGORIZED_BUDGET_ID === budgetId
-      ? { name: "Non categorized", id: unCATEGORIZED_BUDGET_ID }
+      ? { name: "Uncategorized", id: unCATEGORIZED_BUDGET_ID }
       : budgets.find((b) => b.id === budgetId);
 
   return (
@@ -21,7 +21,7 @@ export default function ViewExpensesModal(budgetId, handleClose) {
       <Modal.Header closeButton>
         <Modal.Title>
           <Stack direction="horizontal" gap="2">
-            <div>Expenses - {budgets?.name}</div>
+            <div>Expenses - {budget?.name}</div>
             {budgetId !== unCATEGORIZED_BUDGET_ID && (
               <Button
                 onClick={() => {
