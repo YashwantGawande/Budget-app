@@ -1,11 +1,11 @@
-import { Modal, Form, Button } from "react-bootstrap";
+import { Form, Modal, Button } from "react-bootstrap";
 import { useRef } from "react";
 import {
   useBudgets,
-  unCATEGORIZED_BUDGET_ID,
+  UNCATEGORIZED_BUDGET_ID,
 } from "../contexts/BudgetsContext";
 
-export default function AddExpensesModal({
+export default function AddExpenseModal({
   show,
   handleClose,
   defaultBudgetId,
@@ -13,11 +13,11 @@ export default function AddExpensesModal({
   const descriptionRef = useRef();
   const amountRef = useRef();
   const budgetIdRef = useRef();
-  const { addExpenses, budgets } = useBudgets();
+  const { addExpense, budgets } = useBudgets();
 
   function handleSubmit(e) {
     e.preventDefault();
-    addExpenses({
+    addExpense({
       description: descriptionRef.current.value,
       amount: parseFloat(amountRef.current.value),
       budgetId: budgetIdRef.current.value,
@@ -29,14 +29,13 @@ export default function AddExpensesModal({
     <Modal show={show} onHide={handleClose}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title>New Expenses</Modal.Title>
+          <Modal.Title>New Expense</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control ref={descriptionRef} type="text" required />
           </Form.Group>
-
           <Form.Group className="mb-3" controlId="amount">
             <Form.Label>Amount</Form.Label>
             <Form.Control
@@ -47,11 +46,10 @@ export default function AddExpensesModal({
               step={0.01}
             />
           </Form.Group>
-
           <Form.Group className="mb-3" controlId="budgetId">
             <Form.Label>Budget</Form.Label>
             <Form.Select defaultValue={defaultBudgetId} ref={budgetIdRef}>
-              <option id={unCATEGORIZED_BUDGET_ID}>Not Categorized</option>
+              <option id={UNCATEGORIZED_BUDGET_ID}>Uncategorized</option>
               {budgets.map((budget) => (
                 <option key={budget.id} value={budget.id}>
                   {budget.name}

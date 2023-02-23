@@ -5,10 +5,10 @@ export default function BudgetCard({
   name,
   amount,
   max,
-  onAddExpensesClick,
-  onViewExpensesClick,
   gray,
   hideButtons,
+  onAddExpenseClick,
+  onViewExpensesClick,
 }) {
   const classNames = [];
   if (amount > max) {
@@ -26,7 +26,7 @@ export default function BudgetCard({
             {currencyFormatter.format(amount)}
             {max && (
               <span className="text-muted fs-6 ms-1">
-                /{currencyFormatter.format(max)}
+                / {currencyFormatter.format(max)}
               </span>
             )}
           </div>
@@ -45,9 +45,9 @@ export default function BudgetCard({
             <Button
               variant="outline-primary"
               className="ms-auto"
-              onClick={onAddExpensesClick}
+              onClick={onAddExpenseClick}
             >
-              Add Expenses
+              Add Expense
             </Button>
             <Button onClick={onViewExpensesClick} variant="outline-secondary">
               View Expenses
@@ -58,6 +58,7 @@ export default function BudgetCard({
     </Card>
   );
 }
+
 function getProgressBarVariant(amount, max) {
   const ratio = amount / max;
   if (ratio < 0.5) return "primary";
